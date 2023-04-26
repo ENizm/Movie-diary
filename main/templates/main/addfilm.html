@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Добавить фильм
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Добавить фильм</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}<br>
+        {{ form.year }}<br>
+        {{ form.description }}<br>
+        {{ form.grade }}<br>
+        <div class="form-check">
+            {{ form.favorite }}
+            <label class="form-check-label">
+                Пометить как избранное
+            </label>
+        </div><br>
+        <button type="submit" class="btn btn-success">Сохранить</button>
+    </form>
+    <div style="margin-top: 10px; font-weight: 700; color: red; ">{{ error }}</div>
+{% endblock %}

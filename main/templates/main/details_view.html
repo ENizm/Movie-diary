@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ film.name }}
+{% endblock %}
+
+{% block content %}
+    {% if film.favorite %}
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <h1 class="mb-2">{{ film.name }}</h1>
+            <div style="display: flex; align-items: center; border: solid 1px grey; padding: 10px; border-radius: 15px;">
+                <div class="" style="margin-right: 8px; font-weight: 700">Добавлен в избранное</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FF0000"
+                 class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg>
+            </div>
+        </div>
+    {% else %}
+        <h1 class="mb-2">{{ film.name }}</h1>
+    {% endif %}
+    <div class="mb-4" style="color: grey; font-style: italic">
+        Выпущен в {{ film.year }} году
+    </div>
+    <div class="mb-4" style="border: solid 1px grey; padding: 25px; border-radius: 15px;">
+        <div style="font-size: 25px">
+            Описание фильма:
+        </div>
+        <div>
+            {{ film.description }}
+        </div>
+    </div>
+    <div class="mb-4" style="font-weight: 700; font-size: 18px">
+        Оценка фильма: {{ film.grade }}/10
+    </div>
+    <a href="{% url 'films-update' film.id %}" class="btn btn-info mb-2">Обновить информацию</a><br>
+    <a href="{% url 'films-delete' film.id %}" class="btn btn-danger">Удалить фильм</a>
+{% endblock %}
